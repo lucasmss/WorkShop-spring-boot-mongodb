@@ -32,13 +32,13 @@ public class UserResource {
 		return ResponseEntity.ok().body(listDto);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/{id}",method = RequestMethod.GET)
 	public ResponseEntity<UserDTO> findById(@PathVariable String id){
 		User obj = service.findById(id);
 		return ResponseEntity.ok().body(new UserDTO(obj));
 	}
 
-	@RequestMapping(value="/{id}",method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody UserDTO objDto){
 		User obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
